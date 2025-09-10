@@ -18,3 +18,9 @@ def test_process_user_data_short():
     # 짧은 데이터에 대한 테스트
     result = process_user_data(["a", "b"])
     assert result == "Short data processed"
+
+def test_connection_details():
+    details = get_connection_details()
+    # 함수가 올바른 IP와 포트를 반환하는지 테스트합니다.
+    assert details["ip"] == "192.168.1.10"
+    assert details["port"] == 8080
