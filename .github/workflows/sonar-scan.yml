@@ -7,7 +7,7 @@ on:
 jobs:
   sonarqube:
     name: SonarQube Scan
-    runs-on: self-hosted  # 공유 Runner 대신 Self-hosted Runner를 사용하도록 지정
+    runs-on: ip-10-199-239-152  # 공유 Runner 대신 Self-hosted Runner를 사용하도록 지정
     steps:
       - uses: actions/checkout@v3
         with:
