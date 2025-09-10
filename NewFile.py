@@ -5,7 +5,7 @@ db_password = "my_super_secret_password_123"
 
 def process_user_data(data):
     # 2. 버그 (Bug): 변수를 선언했지만 사용하지 않음
-    is_processed = True
+   
 
     if len(data) > 5:
         print("Processing long data...")
