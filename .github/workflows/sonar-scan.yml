@@ -24,7 +24,7 @@ jobs:
 
       - name: Run tests and generate coverage report
         run: |
-          pytest --cov=main --cov-report=xml
+          pytest --cov=. --cov-report=xml
 
       # --- 💡 진단 단계 추가 ---
       - name: Display coverage report content
