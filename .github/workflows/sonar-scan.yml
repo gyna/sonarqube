@@ -7,11 +7,28 @@ on:
 jobs:
   sonarqube:
     name: SonarQube Scan
-    runs-on: self-hosted  # 공유 Runner 대신 Self-hosted Runner를 사용하도록 지정
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      
+      # Python 및 테스트 도구 설치 단계 추가
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov
+
+      # 테스트 실행 및 커버리지 리포트 생성 단계 추가
+      - name: Run tests and generate coverage report
+        run: |
+          pytest --cov=. --cov-report=xml
+
+      # 기존 SonarQube 분석 단계
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master
         env:
