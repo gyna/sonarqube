@@ -1,10 +1,8 @@
-import unittest
-from main import add_numbers  # main.py 파일에서 add_numbers 함수를 가져옵니다.
+# main_test.py 파일의 전체 내용을 아래 코드로 교체해주세요.
 
-class TestAddNumbers(unittest.TestCase):
-    def test_add(self):
-        # 5와 10을 더하면 15가 맞는지 테스트합니다.
-        self.assertEqual(add_numbers(5, 10), 15)
+from main import add_numbers  # import 경로를 단순하게 유지합니다.
 
-if __name__ == '__main__':
-    unittest.main()
+# 'test_'로 시작하는 간단한 함수로 변경합니다.
+def test_simple_addition():
+    assert add_numbers(5, 10) == 15
+    assert add_numbers(-1, 1) == 0
