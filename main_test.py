@@ -1,6 +1,20 @@
-from main import add_numbers
+# main_test.py에 추가할 내용
 
-# 'test_'로 시작하는 테스트 함수를 만듭니다.
-def test_addition():
-    # add_numbers(5, 10)의 결과가 15가 맞는지 확인(assert)합니다.
+# 기존 import 구문들...
+from main import add_numbers
+from NewFile import process_user_data # NewFile.py에서 함수를 가져옵니다.
+
+# 기존 테스트 함수...
+def test_simple_addition():
     assert add_numbers(5, 10) == 15
+
+# NewFile.py를 위한 새로운 테스트 함수 추가
+def test_process_user_data_long():
+    # 긴 데이터에 대한 테스트
+    result = process_user_data(["a", "b", "c", "d", "e", "f"])
+    assert result == "Long data processed"
+
+def test_process_user_data_short():
+    # 짧은 데이터에 대한 테스트
+    result = process_user_data(["a", "b"])
+    assert result == "Short data processed"
