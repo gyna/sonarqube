@@ -1,11 +1,9 @@
 name: SonarQube Analysis
-
 on:
   push:
     branches: [ main ]
   pull_request:
     types: [opened, synchronize, reopened]
-
 jobs:
   sonarqube:
     name: SonarQube Scan
@@ -14,14 +12,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
-      # --- 진단 단계 추가 ---
-      - name: Verify file structure
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Listing all files:"
-          ls -laR
-
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -31,12 +22,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest pytest-cov
 
-      # --- 테스트 실행 명령어 수정 ---
       - name: Run tests and generate coverage report
         run: |
-          # pytest가 자동으로 찾게 하는 대신, main_test.py 파일을 직접 지정합니다.
-          pytest main_test.py --cov=. --cov-report=xml
+          pytest --cov=main --cov-report=xml
 
+      # --- 💡 진단 단계 추가 ---
+      - name: Display coverage report content
+        run: |
+          echo "--- Content of coverage.xml ---"
+          cat coverage.xml
+          echo "--------------------------------"
+
+      # 기존 SonarQube 분석 단계
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master
         env:
