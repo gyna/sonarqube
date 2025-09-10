@@ -1,3 +1,4 @@
+# A simple test comment to trigger the action
 def greet(name):
     # This is a simple function to greet someone
     message = "Hello, " + name + "!"
